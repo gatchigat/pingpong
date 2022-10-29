@@ -19,16 +19,24 @@ let winningScore = parseInt(winningScoreSelect.value);
 let isGameOver = false;
 
 const reset = () => {
-  isGameOver = false;
-  p1.score = 0;
-  p2.score = 0;
-  p1.display.textContent = 0;
-  p2.display.textContent = 0;
-  p1.display.classList.remove("has-text-success", "has-text-danger");
-  p2.display.classList.remove("has-text-success", "has-text-danger");
+  //   isGameOver = false;
+  //   p1.score = 0;
+  //   p2.score = 0;
+  //   p1.display.textContent = 0;
+  //   p2.display.textContent = 0;
+  //   p1.display.classList.remove("has-text-success", "has-text-danger");
+  //   p2.display.classList.remove("has-text-success", "has-text-danger");
 
-  p1.button.disabled = false;
-  p2.button.disabled = false;
+  //   p1.button.disabled = false;
+  //   p2.button.disabled = false;
+  // $REFACTOR
+  isGameOver = false;
+  for (let p of [p1, p2]) {
+    p.score = 0;
+    p.display.textContent = 0;
+    p.display.classList.remove("has-text-success", "has-text-danger");
+    p.button.disabled = false;
+  }
 };
 const updateScores = (p1, p2) => {
   if (!isGameOver) {
@@ -49,11 +57,11 @@ const updateScores = (p1, p2) => {
 };
 
 // #LISTENERS
-p1Button.addEventListener("click", (e) => {
+p1.button.addEventListener("click", (e) => {
   updateScores(p1, p2);
 });
 
-p2Button.addEventListener("click", (e) => {
+p2.button.addEventListener("click", (e) => {
   updateScores(p2, p1);
 });
 
